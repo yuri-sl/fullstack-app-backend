@@ -5,13 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Path;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateUserRequest {
+
+    @NotBlank(message="Name is required to create a User")
     public String name;
+    @NotNull(message="Age is required to create a User")
     public Integer age;
 
     public String getName() {

@@ -3,30 +3,42 @@ package io.gith.quarkussocial.rest;
 import io.gith.quarkussocial.domain.module.User;
 import io.gith.quarkussocial.domain.repository.UserRepository;
 import io.gith.quarkussocial.rest.dto.CreateUserRequest;
+import io.gith.quarkussocial.rest.dto.ResponseError;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import javax.validation.ConstraintViolation;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.validation.Validator;
+import java.util.Set;
 
 @Path("/users")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class UserResource {
+    private final UserRepository repository;
+    private final Validator validator;
 
     @Inject
-    private final UserRepository repository;
-
-    public UserResource(UserRepository repository){
+    public UserResource(UserRepository repository, Validator validator){
         this.repository = repository;
+        this.validator = validator;
     }
 
     @POST
     @Transactional
     public Response createUser( CreateUserRequest userRequest ){
+        Set<ConstraintViolation<CreateUserRequest>> violations = validator.validate(userRequest);
+        if(!violations.isEmpty()){
+            return ResponseError
+                    .createFromValidation(violations)
+                            .withStatusCode(ResponseError.UNPROCESSABLE_ENTITY_STATUS);
+        }
+
         User user = new User();
 
         user.setAge(userRequest.getAge());
@@ -34,9 +46,10 @@ public class UserResource {
 
         repository.persist(user);
 
-
-
-        return  Response.ok(user).build();
+        return Response
+                .status(Response.Status.CREATED.getStatusCode())
+                .entity(user)
+                .build();
     }
 
     @GET
@@ -52,10 +65,7 @@ public class UserResource {
         User user = repository.findById(id);
         if (user != null){
             repository.delete(user);
-            return Response.ok().build();
-
-
-
+            return Response.noContent().build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }

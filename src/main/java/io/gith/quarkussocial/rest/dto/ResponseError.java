@@ -2,8 +2,8 @@ package io.gith.quarkussocial.rest.dto;
 
 import lombok.*;
 
-import javax.validation.ConstraintViolation;
-import javax.ws.rs.core.Response;
+import jakarta.validation.ConstraintViolation;
+import jakarta.ws.rs.core.Response;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;

@@ -4,6 +4,7 @@ import io.gith.quarkussocial.domain.repository.ClienteRepository;
 import io.gith.quarkussocial.entidade.Cliente;
 import io.gith.quarkussocial.repositorio.PlayerRepository;
 import io.gith.quarkussocial.rest.dto.CreateClienteRequest;
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -22,6 +23,11 @@ public class ClienteResource {
         this.repository = repository;
     }
 
+    @GET
+    public Response listAllUsers(){
+        PanacheQuery<Cliente> query = repository.findAll();
+        return Response.ok(query.list()).build();
+    }
     @POST
     @Transactional
     public Response createCliente(@Valid CreateClienteRequest dto, @Context UriInfo uriInfo){

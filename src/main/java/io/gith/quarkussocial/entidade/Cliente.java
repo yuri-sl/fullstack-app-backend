@@ -30,4 +30,7 @@ public class Cliente extends PanacheEntityBase{
 
     @Column(name = "senha_cliente")
     private String senha_cliente;
+    @Column(name = "cpf_cliente")
+    private String cpf_cliente;
+
 }

@@ -2,9 +2,8 @@ package io.gith.quarkussocial.rest;
 
 import io.gith.quarkussocial.domain.module.User;
 import io.gith.quarkussocial.domain.repository.UserRepository;
-import io.gith.quarkussocial.rest.dto.CreateUserRequest;
-import io.gith.quarkussocial.rest.dto.ResponseError;
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.gith.quarkussocial.dto.CreateUserRequest;
+import io.gith.quarkussocial.dto.ResponseError;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 import jakarta.inject.Inject;

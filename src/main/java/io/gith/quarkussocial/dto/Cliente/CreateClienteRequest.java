@@ -1,4 +1,4 @@
-package io.gith.quarkussocial.rest.dto;
+package io.gith.quarkussocial.dto.Cliente;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Email;
@@ -10,5 +10,7 @@ public record CreateClienteRequest (
     @Email(message="Email inválido")
     String email_cliente,
     @NotBlank(message = "Senha é requerida")
-    String senha_cliente
+    String senha_cliente,
+    @NotBlank(message="CPF do cliente é obrigatório")
+    String cpf_cliente
 ) {}

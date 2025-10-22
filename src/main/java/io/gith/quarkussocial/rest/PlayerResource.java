@@ -1,11 +1,9 @@
 package io.gith.quarkussocial.rest;
 
-import io.gith.quarkussocial.domain.module.User;
 import io.gith.quarkussocial.repositorio.PlayerRepository;
-import io.gith.quarkussocial.rest.dto.CreatePlayerRequest;
+import io.gith.quarkussocial.dto.CreatePlayerRequest;
 import io.gith.quarkussocial.entidade.Player;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;

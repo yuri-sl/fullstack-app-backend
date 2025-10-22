@@ -1,4 +1,4 @@
-package io.gith.quarkussocial.rest.dto;
+package io.gith.quarkussocial.dto;
 
 
 import lombok.AllArgsConstructor;

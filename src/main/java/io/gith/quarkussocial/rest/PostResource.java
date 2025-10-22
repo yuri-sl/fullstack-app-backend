@@ -4,7 +4,7 @@ import io.gith.quarkussocial.domain.module.User;
 import io.gith.quarkussocial.domain.repository.PostsRepository;
 import io.gith.quarkussocial.domain.repository.UserRepository;
 import io.gith.quarkussocial.entidade.Posts;
-import io.gith.quarkussocial.rest.dto.CreatePostRequest;
+import io.gith.quarkussocial.dto.Post.CreatePostRequest;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;

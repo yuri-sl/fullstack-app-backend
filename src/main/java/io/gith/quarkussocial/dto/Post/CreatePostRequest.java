@@ -1,4 +1,4 @@
-package io.gith.quarkussocial.rest.dto;
+package io.gith.quarkussocial.dto.Post;
 
 import io.gith.quarkussocial.domain.module.User;
 import jakarta.validation.constraints.NotBlank;
